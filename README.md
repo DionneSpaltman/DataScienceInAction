@@ -2,6 +2,7 @@
 
 ## **Questions 
 - How many articles should we roughly get from our query? 
+- Which BERTopic model should we ideally use? Right now, we chose the Wikipedia model, but the model card is very unclear about how to use it. 
 
 ## **Objectives of the Project**
 
