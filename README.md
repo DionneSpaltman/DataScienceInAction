@@ -1,8 +1,15 @@
 # Data Science in Action x Deloitte
 
 ## **Questions 
-- How many articles should we roughly get from our query? 
+- How many articles should we roughly get from our query? What query should we use? 
 - Which BERTopic model should we ideally use? Right now, we chose the Wikipedia model, but the model card is very unclear about how to use it. 
+
+So in order we do: 
+1. Download from pyalex (do some data exploration)
+2. Do the topic modelling to calculate the embeddings (so then you have the vectors). We use only the abstracts for this! 
+3. Semantic similiarity analysis
+4. Content-based Recommendation system  
+
 
 ## **Objectives of the Project**
 
