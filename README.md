@@ -1,5 +1,9 @@
 # Data Science in Action x Deloitte
 
+Important deadline: 10-04-2025
+Deloitte Pitch: groups that have selected the Deloitte business case are required to give a (semi?)final presentation about the project. More details will follow (also according to the requirements from Deloitte, if any). No action is required from all other groups.
+ 
+
 ## **Questions 
 - How many articles should we roughly get from our query? What query should we use? 
 - Which BERTopic model should we ideally use? Right now, we chose the Wikipedia model, but the model card is very unclear about how to use it. 
