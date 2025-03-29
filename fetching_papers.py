@@ -35,7 +35,7 @@ params = {
     "cursor": "*"
 }
 all_results = []
-max_pages = 50  # Safety limit: remove this if you want everything
+max_pages = 5  # Safety limit: remove this if you want everything
 
 for i in range(max_pages):
     print(f"Fetching page {i+1}")
@@ -54,3 +54,4 @@ for i in range(max_pages):
     time.sleep(1)  # Optional: Avoid rate-limiting (max 10 requests/sec)
 
 print(f"Total papers fetched: {len(all_results)}")
+
