@@ -5,6 +5,7 @@ import time
 import json
 from IPython import display
 
+folder_path = '/Users/sanduandrei/Desktop/Luiss 1st Year/Data Science in Action/Project Scripts/Open Alex Results'
 BASE_URL = "https://api.openalex.org/works"
 
 
@@ -98,31 +99,51 @@ print(df.isnull().sum())
 def reconstruct_abstract(indexed):
     if not isinstance(indexed, dict):
         return None
-    # Create a list where the position corresponds to word index
     positions = {}
     for word, indices in indexed.items():
         for i in indices:
             positions[i] = word
-    # Reconstruct the abstract by sorting positions
     return ' '.join(positions[i] for i in sorted(positions))
 
-# Reconstruct abstracts
-for entry in all_results:
-    indexed = entry.get("abstract_inverted_index")
-    entry["abstract"] = reconstruct_abstract(indexed)
-    # Delete the original inverted abstract to clean up the structure
-    if "abstract_inverted_index" in entry:
-        del entry["abstract_inverted_index"]
+# Columns to remove
+columns_to_delete = [
+    "abstract_inverted_index",
+    "abstract_inverted_index_v3",
+    "fulltext_origin",
+    "is_authors_truncated"
+]
 
+# Step 2: Clean each record
+for entry in all_results:
+    # Reconstruct abstract
+    entry["abstract"] = reconstruct_abstract(entry.get("abstract_inverted_index"))
+    
+    # Remove unwanted fields
+    for col in columns_to_delete:
+        entry.pop(col, None)
+
+print(df_clean.columns)
 # Display csv 
 df_clean = pd.DataFrame(all_results)
 display(df_clean)
 
 
-with open("openalex_results_clean.json", "w") as f:
+with open(folder_path + "openalex_results_clean.json", "w") as f:
     json.dump(all_results, f, indent=2)
 print("Clean JSON saved as openalex_results_clean.json")
 
-# Save clean CSV (will flatten nested fields)
-df_clean.to_csv("openalex_results_clean.csv", index=False)
+# Step 4: Save as clean CSV
+df_clean = pd.DataFrame(all_results)
+df_clean.to_csv(folder_path + "openalex_results_clean.csv", index=False)
 print("Clean CSV saved as openalex_results_clean.csv")
+
+# Load the CSV back into a DataFrame
+csv_path = os.path.join(folder_path, "openalex_results_clean.csv")
+df_loaded = pd.read_csv(csv_path)
+print("✅ CSV loaded. Shape:", df_loaded.shape)
+
+# Load the JSON back into a list of dictionaries
+json_path = os.path.join(folder_path, "openalex_results_clean.json")
+with open(json_path, "r") as f:
+    json_loaded = json.load(f)
+print("✅ JSON loaded. Total entries:", len(json_loaded))
