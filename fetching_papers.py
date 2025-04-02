@@ -118,12 +118,12 @@ for entry in all_results:
     # Reconstruct abstract
     entry["abstract"] = reconstruct_abstract(entry.get("abstract_inverted_index"))
     
-    # Remove unwanted fields
     for col in columns_to_delete:
         entry.pop(col, None)
 
 print(df_clean.columns)
-# Display csv 
+
+# CSV Display  
 df_clean = pd.DataFrame(all_results)
 display(df_clean)
 
@@ -132,17 +132,17 @@ with open(folder_path + "openalex_results_clean.json", "w") as f:
     json.dump(all_results, f, indent=2)
 print("Clean JSON saved as openalex_results_clean.json")
 
-# Step 4: Save as clean CSV
+# Clean CSV
 df_clean = pd.DataFrame(all_results)
 df_clean.to_csv(folder_path + "openalex_results_clean.csv", index=False)
 print("Clean CSV saved as openalex_results_clean.csv")
 
-# Load the CSV back into a DataFrame
+# CSV into DF
 csv_path = os.path.join(folder_path, "openalex_results_clean.csv")
 df_loaded = pd.read_csv(csv_path)
 print("✅ CSV loaded. Shape:", df_loaded.shape)
 
-# Load the JSON back into a list of dictionaries
+# JSON to list of dict
 json_path = os.path.join(folder_path, "openalex_results_clean.json")
 with open(json_path, "r") as f:
     json_loaded = json.load(f)
