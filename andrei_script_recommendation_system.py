@@ -7,6 +7,7 @@ from bertopic import BERTopic
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer, util
 import numpy as np
+import matplotlib.pyplot as plt
 
 # Path to my json file with the openalex results (1000 papers)
 json_path = "/Users/sanduandrei/Desktop/Luiss 1st Year/Data Science in Action/Project/openalex_results_clean.json"
@@ -158,7 +159,7 @@ top_paper_idx = np.argsort(-util.pytorch_cos_sim(
 debug_cosine_similarity(query, top_paper_idx)
 
 
-def abstract_word_importance_top_k(paper_idx, query_text, top_k=20):
+def get_abstract_word_importance(paper_idx, query_text, top_k=20):
     abstract = papers_df.iloc[paper_idx]['abstract']
     title = papers_df.iloc[paper_idx]['title']
     base_input = f"Title: {title} Abstract: {abstract}"
@@ -180,21 +181,32 @@ def abstract_word_importance_top_k(paper_idx, query_text, top_k=20):
             new_embedding.reshape(1, -1)
         )[0].item()
 
-        drop = base_score - new_score  # How much the score dropped when removing this word
+        drop = base_score - new_score
         drops.append((word, drop))
 
-    # Sort by importance: biggest drop = most important
-    drops.sort(key=lambda x: -x[1])
+    drops.sort(key=lambda x: -x[1])  # Most important words first
+    return drops[:top_k]
 
-    print(f"\nTop {top_k} most influential words in abstract for paper: {title}")
-    print(f"Query: {query_text}")
-    print(f"Base similarity score: {base_score:.4f}\n")
+import matplotlib.pyplot as plt
 
-    for word, drop in drops[:top_k]:
-        print(f"{word:>15s}: ↓ {drop:.4f}")
+def plot_word_importance(paper_idx, query_text, top_k=20):
+    top_words = get_abstract_word_importance(paper_idx, query_text, top_k)
+    words, drops = zip(*top_words)
+
+    plt.figure(figsize=(10, 6))
+    plt.barh(words[::-1], drops[::-1], color='skyblue')  # reverse for top-down
+    plt.xlabel("Score Drop When Removed")
+    plt.title(f"Top {top_k} Influential Words in Abstract (Paper #{paper_idx})")
+    plt.tight_layout()
+    plt.grid(axis='x', linestyle='--', alpha=0.6)
+    plt.show()
+
+query = "Reinforcement learning for dynamic pricing"
+paper_idx = 369  # or any top-ranked paper index
+plot_word_importance(paper_idx, query_text=query, top_k=20)
 
 
 query = "Reinforcement learning for dynamic pricing in e-commerce"
 paper_idx = 369  # or one of your top papers
-abstract_word_importance_top_k(paper_idx, query, top_k=20)
+get_abstract_word_importance(paper_idx, query, top_k=20)
 
