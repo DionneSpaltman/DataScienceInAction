@@ -39,6 +39,7 @@ df_clean['embedding'] = list(embeddings)
 papers_df = df_clean.copy()
 paper_embeddings = np.vstack(papers_df['embedding'].values)
 
+
 '''
 def recommend_similar_papers_from_query(query_text, top_k=5, boost_topic=True):
     # Get query embedding 
@@ -77,7 +78,6 @@ recommend_similar_papers_from_query(query_text=QUERY, top_k=5)
 
 
 
-'''
 def explain_recommendations(query_text, top_k=5, boost_topic=True):
     print(f"\n🔍 Query: {query_text}\n")
 
@@ -116,7 +116,7 @@ def explain_recommendations(query_text, top_k=5, boost_topic=True):
         print(f"    - Abstract: {abstract}\n")
 
 explain_recommendations("Reinforcement learning for automated pricing in e-commerce", top_k=5)
-'''
+
 
 
 def debug_cosine_similarity(query_text, paper_idx):
@@ -196,7 +196,7 @@ def plot_word_importance(paper_idx, query_text, top_k=20):
     plt.figure(figsize=(10, 6))
     plt.barh(words[::-1], drops[::-1], color='skyblue')  # reverse for top-down
     plt.xlabel("Score Drop When Removed")
-    plt.title(f"Top {top_k} Influential Words in Abstract (Paper #{paper_idx})")
+    plt.title(f"Top {top_k} Influential Words in Paper #{paper_idx}{papers_df.iloc[paper_idx]['title']})")
     plt.tight_layout()
     plt.grid(axis='x', linestyle='--', alpha=0.6)
     plt.show()
@@ -209,4 +209,4 @@ plot_word_importance(paper_idx, query_text=query, top_k=20)
 query = "Reinforcement learning for dynamic pricing in e-commerce"
 paper_idx = 369  # or one of your top papers
 get_abstract_word_importance(paper_idx, query, top_k=20)
-
+        
