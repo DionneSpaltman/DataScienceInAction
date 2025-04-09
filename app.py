@@ -40,6 +40,5 @@ if st.button("Recommend"):
         paper = papers_df.iloc[idx]
         st.markdown(f"### {paper['title']}")
         st.markdown(f"**Score:** {cosine_scores[idx]:.4f}")
-        st.markdown(f"**Topic:** {paper.get('topic_label', 'Unknown')}")
-        with st.expander("Show abstract"):
-            st.markdown(paper['abstract'])
+        # st.markdown(f"**Topic:** {paper.get('topic_label', 'Unknown')}")
+        with st.expander("Show abstract")
