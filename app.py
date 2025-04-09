@@ -1,3 +1,6 @@
+# to run the app, paste in your terminal: streamlit run app.py
+
+# import statements
 import streamlit as st
 import pandas as pd
 import numpy as np
