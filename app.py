@@ -42,4 +42,4 @@ if st.button("Recommend"):
         st.markdown(f"**Score:** {cosine_scores[idx]:.4f}")
         # st.markdown(f"**Topic:** {paper.get('topic_label', 'Unknown')}")
         with st.expander("Show abstract"):
-            st.markdown(paper['abstract'])
+            st.markdown(paper['abstract'
