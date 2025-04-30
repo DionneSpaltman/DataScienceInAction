@@ -5,8 +5,8 @@ from transformers import PegasusTokenizer, PegasusForConditionalGeneration
 import torch
 
 # Paths
-json_path = os.path.join("/Users/dionnespaltman/Desktop/Luiss /Data Science in Action/Project/openalex_results_clean.json")
-output_path = os.path.join("/Users/dionnespaltman/Desktop/Luiss /Data Science in Action/Project/openalex_results_summaries_full.json")
+json_path = os.path.join("/Users/dionnespaltman/Desktop/Luiss/Data Science in Action/Project/openalex_results_clean.json")
+output_path = os.path.join("/Users/dionnespaltman/Desktop/Luiss/Data Science in Action/Project/openalex_results_summaries_full.json")
 
 # Load JSON 
 with open(json_path, 'r') as f:
@@ -52,3 +52,4 @@ with open(output_path, 'w') as f:
     json.dump(full_batch, f, indent=2)
 
 print(f"✅ Full dataset summaries saved to: {output_path}")
+
