@@ -14,7 +14,7 @@ def load_model():
 # --- Load and embed data ---
 @st.cache_data
 def load_data():
-    with open("/Users/dionnespaltman/Desktop/Luiss/Data Science in Action/Project/openalex_results_summaries_full.json", 'r') as f:
+    with open("openalex_results_summaries_full.json", 'r') as f:
         data = json.load(f)
     df = pd.DataFrame(data)
 
