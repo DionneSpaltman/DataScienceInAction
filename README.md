@@ -1,26 +1,5 @@
-# Data Science in Action x Deloitte
-
-Important deadline: 10-04-2025
-Deloitte Pitch: groups that have selected the Deloitte business case are required to give a (semi?)final presentation about the project. More details will follow (also according to the requirements from Deloitte, if any). No action is required from all other groups.
- 
-
-## **Questions 
-- How many articles should we roughly get from our query? What query should we use? 
-- Which BERTopic model should we ideally use? Right now, we chose the Wikipedia model, but the model card is very unclear about how to use it. 
-
-So in order we do (?): 
-1. Download from pyalex (do some data exploration)
-2. Do the topic modelling to calculate the embeddings (so then you have the vectors). We use only the abstracts for this! 
-3. Semantic similiarity analysis
-4. Content-based Recommendation system  
-
-Options: 
-- Topic Modelling
-- Text Summarization
-- Entity Recognition
-- Content-Based Recommendation System
-- Semantic Similiarity Analysis
-- Document Classification 
+# Luiss x Deloitte
+Course: Data Science in Action
 
 
 ## **Objectives of the Project**
@@ -141,31 +120,11 @@ Options:
 - Manual paper analysis is **slow, inefficient, and unscalable**.
 - The **proposed solution** improves **speed and accuracy** of information retrieval.
 
-### **Project Workflow**
-1. **Use NLP** to:
-   - Identify **research themes** (Topic Modeling).
-   - Recommend **related articles** (Content-based Filtering).
-   - Summarize abstracts for **quick insights**.
 
 ### **Deliverables**
 - **Code**: A well-documented implementation of the recommendation system.
 - **Technical Report**: Explanation of methodologies, results, and insights.
 - **(Bonus) Demo Interface**: A user-friendly way to explore results.
-
-### **Evaluation Criteria**
-- **Originality**: Creativity of the solution.
-- **Business Vision**: How applicable the system is in real-world research.
-- **Storytelling**: Clear and engaging explanation.
-- **Graphic Effectiveness**: Presentation quality.
-- **Technical Soundness**: Performance of the implemented system.
-
----
-
-## **Next Steps**
-1. **Finalize the dataset** from OpenAlex.
-2. **Select NLP techniques** (topic modeling, embeddings).
-3. **Develop the recommendation system**.
-4. **Evaluate performance metrics**.
 
 ---
 
